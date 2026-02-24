@@ -104,49 +104,50 @@
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
         const dots = document.querySelectorAll('.dot');
-        let currentDotIndex = 0;
+        const cards = Array.from(track.children);
 
-        function updateDots(direction) {
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (direction === 'next') {
-                currentDotIndex = (currentDotIndex + 1) % dots.length;
-            } else {
-                currentDotIndex = (currentDotIndex - 1 + dots.length) % dots.length;
-            }
-            dots[currentDotIndex].classList.add('active');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            const isMobile = window.innerWidth <= 768;
+            const gap = isMobile ? 15 : 30;
+            
+            const cardWidth = cards[0].offsetWidth;
+            
+            const moveAmount = currentIndex * (cardWidth + gap);
+            
+            track.style.transition = "transform 0.5s ease-in-out";
+            track.style.transform = `translateX(-${moveAmount}px)`;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
         }
 
         function moveNext() {
-            const cardWidth = track.firstElementChild.offsetWidth + 30;
-            track.style.transition = "transform 0.5s ease-in-out";
-            track.style.transform = `translateX(-${cardWidth}px)`;
-
-            updateDots('next');
-
-            setTimeout(() => {
-                track.style.transition = "none";
-                track.appendChild(track.firstElementChild); 
-                track.style.transform = `translateX(0)`;
-            }, 500);
+            if (currentIndex >= cards.length - 1) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            updateSlider();
         }
 
         function movePrev() {
-            const cardWidth = track.firstElementChild.offsetWidth + 30;
-            
-            track.style.transition = "none";
-            track.insertBefore(track.lastElementChild, track.firstElementChild);
-            
-            track.style.transform = `translateX(-${cardWidth}px) `;
-            
-            setTimeout(() => {
-                track.style.transition = "transform 0.5s ease-in-out";
-                track.style.transform = `translateX(0)`;
-                updateDots('prev');
-            }, 10);
+            if (currentIndex <= 0) {
+                currentIndex = cards.length - 1;
+            } else {
+                currentIndex--;
+            }
+            updateSlider();
         }
 
         nextBtn.addEventListener('click', moveNext);
         prevBtn.addEventListener('click', movePrev);
+
+        window.addEventListener('resize', updateSlider);
+
+        updateSlider();
 
         let autoSlide = setInterval(moveNext, 5000);
         const container = document.querySelector('.cards-container');
