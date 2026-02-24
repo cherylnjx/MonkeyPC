@@ -567,28 +567,28 @@ select[name="inquiry_type"] {
     }
 
     .logo-box img {
-        height: 35px;
+        height: 30px !important;
     }
 
     .nav-links {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
     }
 
     .nav-links a {
-        font-size: 13px;
+        font-size: 11px !important;
         white-space: nowrap;
     }
 
     .btn-quotation {
-        padding: 6px 10px;
-        font-size: 11px;
-        gap: 4px;
+        padding: 5px 8px !important;
+        font-size: 10px !important;
+        border-radius: 15px;
     }
 
     .btn-whatsapp {
-        height: 14px;
+        display: none;
     }
 
     .main {
@@ -606,7 +606,7 @@ select[name="inquiry_type"] {
     }
 
     .main-content h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem !important;
     }
 
     .main-description {
@@ -620,9 +620,9 @@ select[name="inquiry_type"] {
     }
 
     .card {
-        flex: 0 0 100%;
-        min-width: 100%;
-        margin: 0;
+        flex: 0 0 100% !important;
+        min-width: 100% !important;
+        padding: 20px !important;
     }
 
     .card h3,
@@ -636,23 +636,27 @@ select[name="inquiry_type"] {
     }
 
     .cards-container {
-        padding: 20px 45px;
-        width: 100%;
-        overflow: hidden;
+        padding: 20px 50px !important;
+        width: 100% !important;
+        overflow: visible !important;
     }
 
     .slider-arrow {
-        width: 35px;
-        height: 35px;
-        background: rgba(255, 255, 255, 0.9);
+        width: 40px !important;
+        height: 40px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        background: #647749 !important;
+        color: white !important;
+        z-index: 100;
     }
 
     .slider-arrow.prev {
-        left: 5px;
+        left: 5px !important;
     }
 
     .slider-arrow.next {
-        right: 5px;
+        right: 5px !important;
     }
 
     .contact-container {
@@ -693,11 +697,10 @@ select[name="inquiry_type"] {
     .services,
     .contact-container,
     .gallery-section {
-        width: 100vw;
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 5%;
-        padding-right: 5%;
+        width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin: 0 !important;
+        overflow: hidden;
     }
 }
