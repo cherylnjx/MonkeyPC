@@ -558,14 +558,22 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 4%;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 5%;
     }
 
     .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 14px;
     }
 
     .btn-quotation {
@@ -606,8 +614,14 @@ select[name="inquiry_type"] {
     }
 
     .card {
-        flex: 0 0 80%;
-        min-width: 80%;
+        flex: 0 0 85%;
+        min-width: 85%;
+        padding: 25px;
+    }
+
+    .card h3,
+    .card p {
+        padding: 0 5px;
     }
 
     .cards-track {
@@ -633,8 +647,17 @@ select[name="inquiry_type"] {
     }
 
     .form-card {
-        max-width: 100%;
-        padding: 25px 20px;
+        padding: 30px 5%;
+    }
+
+    input:not(:placeholder-shown):invalid {
+        outline: none; 
+    }
+
+    #formResponse {
+        text-align: center;
+        margin: 10px 0;
+        width: 100%;
     }
 
     .gallery-grid {
@@ -644,5 +667,17 @@ select[name="inquiry_type"] {
     .gallery-item {
         width: 100%;
         height: auto;
+    }
+
+    .main,
+    .services,
+    .contact-container,
+    .gallery-section {
+        width: 100vw;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 }
