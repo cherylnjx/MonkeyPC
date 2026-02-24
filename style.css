@@ -558,12 +558,12 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        padding: 15px 3%;
-        gap: 10px;
-        height: 80px;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 10px 2% !important;
+        gap: 5px !important;
+        height: auto;
     }
 
     .logo-box img {
