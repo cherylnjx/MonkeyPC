@@ -586,8 +586,8 @@ select[name="inquiry_type"] {
     }
 
     .nav-links a {
-        font-size: 20px !important;
-        font-weight: 700 !important;
+        font-size: 18px !important;
+        font-weight: bold !important;
         letter-spacing: 0.5px;
         text-transform: uppercase;
     }
