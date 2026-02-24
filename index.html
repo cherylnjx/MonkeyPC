@@ -112,7 +112,7 @@
             const isMobile = window.innerWidth <= 768;
             const gap = isMobile ? 15 : 30;
             const cardWidth = cards[0].offsetWidth;
-
+            
             const moveAmount = currentIndex * (cardWidth + gap);
             
             track.style.transition = "transform 0.5s ease-in-out";
@@ -120,7 +120,6 @@
 
             cards.forEach((card, index) => {
                 card.classList.toggle('active-mobile', index === currentIndex);
-                
                 if (dots[index]) {
                     dots[index].classList.toggle('active', index === currentIndex);
                 }
@@ -137,16 +136,8 @@
             updateSlider();
         }
 
-        nextBtn.addEventListener('click', () => {
-            clearInterval(autoSlide);
-            moveNext();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            clearInterval(autoSlide);
-            movePrev();
-        });
-
+        nextBtn.addEventListener('click', moveNext);
+        prevBtn.addEventListener('click', movePrev);
         window.addEventListener('resize', updateSlider);
 
         updateSlider();
