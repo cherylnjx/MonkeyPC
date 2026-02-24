@@ -558,12 +558,16 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        padding: 10px 2% !important;
-        gap: 5px !important;
-        height: auto;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+        padding: 20px 5% !important;
+        gap: 15px !important;
+        height: auto !important;
+    }
+
+    .logo-box {
+        order: 1;
     }
 
     .logo-box img {
@@ -571,9 +575,11 @@ select[name="inquiry_type"] {
     }
 
     .nav-links {
+        order: 2;
         display: flex !important;
         flex-direction: row !important;
-        gap: 8px !important;
+        gap: 20px !important;
+        margin: 5px 0;
     }
 
     .nav-links a {
@@ -582,9 +588,10 @@ select[name="inquiry_type"] {
     }
 
     .btn-quotation {
-        padding: 5px 8px !important;
-        font-size: 10px !important;
-        border-radius: 15px;
+        order: 3;
+        width: fit-content;
+        padding: 10px 25px !important;
+        font-size: 14px !important;
     }
 
     .btn-whatsapp {
@@ -606,7 +613,7 @@ select[name="inquiry_type"] {
     }
 
     .main-content h1 {
-        font-size: 1.6rem !important;
+        font-size: 2rem !important;
     }
 
     .main-description {
@@ -620,9 +627,11 @@ select[name="inquiry_type"] {
     }
 
     .card {
-        flex: 0 0 100% !important;
-        min-width: 100% !important;
+        flex: 0 0 80% !important;
+        min-width: 80% !important;
+        margin: 0 !important;
         padding: 20px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .card h3,
@@ -631,32 +640,37 @@ select[name="inquiry_type"] {
     }
 
     .cards-track {
-        gap: 15px;
-        padding-left: 5%;
+        display: flex;
+        gap: 15px !important;
+        padding-left: 10% !important; 
+        padding-right: 10% !important;
     }
 
     .cards-container {
-        padding: 20px 50px !important;
+        padding: 20px 0 !important;
         width: 100% !important;
-        overflow: visible !important;
+        overflow: hidden !important; 
+        display: flex;
+        justify-content: center;
     }
 
     .slider-arrow {
-        width: 40px !important;
-        height: 40px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        background: #647749 !important;
-        color: white !important;
-        z-index: 100;
+        top: auto !important;
+        bottom: -50px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
 
     .slider-arrow.prev {
-        left: 5px !important;
+        left: 30% !important;
     }
 
     .slider-arrow.next {
-        right: 5px !important;
+        right: 30% !important;
+    }
+
+    .services {
+        padding-bottom: 80px !important;
     }
 
     .contact-container {
@@ -698,9 +712,7 @@ select[name="inquiry_type"] {
     .contact-container,
     .gallery-section {
         width: 100% !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        margin: 0 !important;
-        overflow: hidden;
+        padding-left: 5% !important;
+        padding-right: 5% !important;
     }
 }
