@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonkeyPC - Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- header -->
+     <header>
+        <!-- header - logo -->
+        <div class="logo-box">
+            <img src="image\templogo.PNG" alt="logo">
+        </div>
+
+        <!-- header - navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contactus.html" class="active">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <!-- header - whatsapp [prefilled message "Hi, I am contacting from MonkeyPC Website"]-->
+         <a href="https://wa.me/6594606645?text=Hi,%20I%20am%20contacting%20from%20MonkeyPC%20Website." class="btn-quotation" target="_blank">
+            <img src="image/whatsapplogo.png" alt="whatsapp logo" class="btn-whatsapp">Get a Quotation
+        </a>
+     </header>
+
+     <!-- main content -->
+      <section class="contact-container">
+        
+        <!-- faq -->
+        <div class="faq-section">
+            <h1>Frequently Asked Questions</h1>
+            <p class="subtitle">Have a question not answered? Get in touch with us!</p>
+
+            <div class="faq-questions">
+
+                <!-- faq 1 -->
+                <div class="faq-item">
+                    <div class="faq-header">
+                        <span>How long is the warranty?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>6-7 months SIX SEVENNNNN</p>
+                    </div>
+                </div>
+
+                <!-- faq 2 -->
+                <div class="faq-item"> 
+                    <div class="faq-header">
+                        <span>What are the services provided?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p>We provide building of PCs, servicing, upgrading and cleaning. If you require other services not stated, feel free to get in touch with us and we will get back as soon as possible.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- get in touch form -->
+        <div class="form-card">
+            <h2>Get In Touch</h2>
+            <p class="form-subtitle">For emergencies, please WhatsApp instead.</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Inquiry Type <span class="req">*</span></label>
+                    <select name="inquiry_type" required>
+                        <option value="" disabled selected>Select an option...</option>
+                        <option value="PC Building">PC Building</option>
+                        <option value="PC Upgrading/Servicing">PC Upgrading/Servicing</option>
+                        <option value="PC Cleaning">PC Cleaning</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Name <span class="req">*</span></label>
+                    <input type="text" name="name" required placeholder="Your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email <span class="req">*</span></label>
+                    <input type="email" name="email" required 
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|COM)$" 
+                        title="Please enter a valid email ending in .com"
+                        placeholder="example@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Contact Number <span class="req">*</span></label>
+                    <div class="phone-input">
+                        <input type="text" name="country_code" class="country-select" value="+65" required pattern="^\+[0-9]+$">
+                        <input type="tel" 
+                            name="phone" 
+                            required 
+                            pattern="[0-9]{5,}" 
+                            inputmode="numeric"
+                            title="Please enter only numbers (at least 5 digits)"
+                            placeholder="8123 4567">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What services do you require? <span class="req">*</span></label>
+                    <textarea name="message" rows="5" required maxlength="1000" 
+                            placeholder="Tell us more..."></textarea>
+                    <small id="charCount">0 / 1000 characters</small>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Submit</button>
+            </form>
+            <div id="formResponse" style="display:none; margin-top:10px; text-align:center;"></div>
+        </div>
+    </section>
+</body>
+<script>
+    document.querySelectorAll('.faq-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const icon = header.querySelector('i');
+        
+        item.classList.toggle('active');
+        
+        if (item.classList.contains('active')) {
+            icon.classList.replace('fa-plus', 'fa-minus');
+        } else {
+            icon.classList.replace('fa-minus', 'fa-plus');
+        }
+        });
+    });
+
+    // google sheets //
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwxOD1vUSFdfKivJiVJ0_cIG0285ATMl3c3-y6wC4HmKeLZ_P1MVEzPlbQVIKJOEzTi4g/exec';
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const textarea = document.querySelector('textarea[name="message"]');
+    const charCount = document.getElementById('charCount');
+
+    textarea.addEventListener('input', () => {
+        const length = textarea.value.length;
+        charCount.textContent = `${length} / 1000 characters`;
+        
+        charCount.style.color = length >= 1000 ? "#ff4d4d" : "#888";
+    });
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+        }
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwxOD1vUSFdfKivJiVJ0_cIG0285ATMl3c3-y6wC4HmKeLZ_P1MVEzPlbQVIKJOEzTi4g/exec'; 
+        const submitBtn = document.getElementById('submitBtn');
+        const responseMsg = document.getElementById('formResponse');
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending...";
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit";
+                responseMsg.style.display = "block";
+                responseMsg.innerText = "We have received your inquiry. We'll get back to you soon.";
+                responseMsg.style.color = "green";
+                form.reset();
+                charCount.textContent = "0 / 1000 characters";
+            })
+            .catch(error => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit";
+                responseMsg.style.display = "block";
+                responseMsg.innerText = "Something went wrong. Please try again.";
+                responseMsg.style.color = "red";
+            });
+        });
+    });
+</script>
+</html>

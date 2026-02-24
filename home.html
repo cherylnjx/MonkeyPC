@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonkeyPC - Homepage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- header -->
+     <header>
+        <!-- header - logo -->
+        <div class="logo-box">
+            <img src="image/templogo.PNG" alt="logo">
+        </div>
+
+        <!-- header - navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <!-- header - whatsapp [prefilled message "Hi, I am contacting from MonkeyPC Website"]-->
+         <a href="https://wa.me/6594606645?text=Hi,%20I%20am%20contacting%20from%20MonkeyPC%20Website." class="btn-quotation" target="_blank">
+            <img src="image/whatsapplogo.png" alt="whatsapp logo" class="btn-whatsapp">Get a Quotation
+        </a>
+     </header>
+
+     <!-- main content -->
+     <section class="main">
+        <div class="main-content">
+            <h1>MAKE YOUR DREAMS<br>COME TRUE</h1>
+                <p class="main-description">
+                    texttexttexttexttexttexttexttexttexttexttexttexttexttext<br>
+                    texttexttexttexttexttexttexttexttexttexttexttexttexttext<br>
+                    texttexttexttexttexttexttexttexttexttexttexttexttext
+                </p>
+                <a href="contactus.html" class="btn-contact">Contact Us
+                <img src="image/arrow.png" alt="arrow symbol" class="btn-arrow"></a>
+        </div>
+     </section>
+     <section class="services">
+        <div class="cards-container">
+
+            <!-- left arrow button -->
+            <div class="slider-arrow prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <!-- cards -->
+            <div class="cards-track" id="cardsTrack">
+                <div class="card">
+                    <img src="image/temp1.jpg" alt="PC Building" class="card-img">
+                    <h3>PC Building - texttexttext</h3>
+                    <p>texttexttextdescriptiontexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+
+                <div class="card">
+                    <img src="image/temp2.jpg" alt="PC Upgrading" class="card-img">
+                    <h3>PC Upgrading - texttexttext</h3>
+                    <p>texttexttextdescriptiontexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+
+                <div class="card">
+                    <img src="image/temp3.jpg" alt="PC Servicing" class="card-img">
+                    <h3>PC Servicing - texttexttext</h3>
+                    <p>texttexttextdescriptiontexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+
+                <div class="card">
+                    <img src="image/temp4.jpg" alt="PC Servicing" class="card-img">
+                    <h3>PC Servicing - texttexttext</h3>
+                    <p>texttexttextdescriptiontexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <!-- right arrow button -->
+            <div class="slider-arrow next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+
+        <div class="dots-container" id="dotsContainer">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        </div>
+    </section>
+    <script>
+        const track = document.getElementById('cardsTrack');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const dots = document.querySelectorAll('.dot');
+        let currentDotIndex = 0;
+
+        function updateDots(direction) {
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (direction === 'next') {
+                currentDotIndex = (currentDotIndex + 1) % dots.length;
+            } else {
+                currentDotIndex = (currentDotIndex - 1 + dots.length) % dots.length;
+            }
+            dots[currentDotIndex].classList.add('active');
+        }
+
+        function moveNext() {
+            const cardWidth = track.firstElementChild.offsetWidth + 30;
+            track.style.transition = "transform 0.5s ease-in-out";
+            track.style.transform = `translateX(-${cardWidth}px)`;
+
+            updateDots('next');
+
+            setTimeout(() => {
+                track.style.transition = "none";
+                track.appendChild(track.firstElementChild); 
+                track.style.transform = `translateX(0)`;
+            }, 500);
+        }
+
+        function movePrev() {
+            const cardWidth = track.firstElementChild.offsetWidth + 30;
+            
+            track.style.transition = "none";
+            track.insertBefore(track.lastElementChild, track.firstElementChild);
+            
+            track.style.transform = `translateX(-${cardWidth}px) `;
+            
+            setTimeout(() => {
+                track.style.transition = "transform 0.5s ease-in-out";
+                track.style.transform = `translateX(0)`;
+                updateDots('prev');
+            }, 10);
+        }
+
+        nextBtn.addEventListener('click', moveNext);
+        prevBtn.addEventListener('click', movePrev);
+
+        let autoSlide = setInterval(moveNext, 5000);
+        const container = document.querySelector('.cards-container');
+        container.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        container.addEventListener('mouseleave', () => autoSlide = setInterval(moveNext, 5000));
+    </script>
+</body>
+</html>
