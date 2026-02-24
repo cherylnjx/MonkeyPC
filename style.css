@@ -101,7 +101,8 @@ header {
 
 .main-description {
     font-size: 1.2rem;
-    word-break: break-all;
+    word-break: break-word;
+    hyphens: auto;
     margin-bottom: 30px;
     opacity: 0.9;
 }
@@ -168,7 +169,8 @@ header {
     font-size: 1rem;
     color: #666;
     overflow-wrap: anywhere; 
-    word-break: break-all;
+    word-break: break-word;
+    hyphens: auto;
     line-height: 1.5;
 }
 
@@ -512,6 +514,8 @@ select[name="inquiry_type"] {
     cursor: pointer;
 }
 
+/* smaller screens */
+
 @media (max-width: 1380px) {
     .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -533,5 +537,63 @@ select[name="inquiry_type"] {
 @media (max-width: 600px) {
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* overall fix - smaller screens (phone/tablets) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 5%;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .btn-quotation {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main {
+        height: auto;
+        padding: 80px 5%;
+        text-align: center;
+    }
+
+    .main-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .btn-contact {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card {
+        flex: 0 0 100%; 
+        min-width: 100%;
+    }
+
+    .cards-container {
+        padding: 20px 10px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        padding: 40px 5%;
+        gap: 40px;
+    }
+
+    .faq-section h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .form-card {
+        max-width: 100%;
+        padding: 25px 20px;
     }
 }
