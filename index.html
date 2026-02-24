@@ -110,39 +110,36 @@
 
         function updateSlider() {
             const isMobile = window.innerWidth <= 768;
-            const gap = isMobile ? 15 : 30;
-            const cardWidth = cards[0].offsetWidth;
             
-            const moveAmount = currentIndex * (cardWidth + gap);
-            
-            track.style.transition = "transform 0.5s ease-in-out";
-            track.style.transform = `translateX(-${moveAmount}px)`;
+            if (isMobile) {
+                const gap = 15;
+                const cardWidth = cards[0].offsetWidth;
+                const moveAmount = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${moveAmount}px)`;
+            } else {
+                const cardWidth = cards[0].offsetWidth;
+                const gap = 30;
+                track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+            }
 
             cards.forEach((card, index) => {
                 card.classList.toggle('active-mobile', index === currentIndex);
-                if (dots[index]) {
-                    dots[index].classList.toggle('active', index === currentIndex);
-                }
+                if (dots[index]) dots[index].classList.toggle('active', index === currentIndex);
             });
         }
 
-        function moveNext() {
+        nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % cards.length;
             updateSlider();
-        }
+        });
 
-        function movePrev() {
+        prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + cards.length) % cards.length;
             updateSlider();
-        }
+        });
 
-        nextBtn.addEventListener('click', moveNext);
-        prevBtn.addEventListener('click', movePrev);
         window.addEventListener('resize', updateSlider);
-
         updateSlider();
-
-        let autoSlide = setInterval(moveNext, 5000);
     </script>
 </body>
 </html>
