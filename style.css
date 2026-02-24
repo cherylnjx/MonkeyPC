@@ -558,43 +558,49 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
-        display: flex !important;
         flex-direction: column !important;
-        height: auto !important;
-        padding: 20px 0 !important;
-        align-items: center !important;
+        padding: 20px 5% !important;
         gap: 15px !important;
+        height: auto !important;
     }
 
     .logo-box {
-        order: 1 !important;
-        margin-bottom: 5px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        order: 1;
     }
 
     .logo-box img {
-        height: 30px !important;
+        height: 35px !important;
+        margin-bottom: 5px;
     }
 
     .nav-links {
-        order: 2 !important; 
-        display: flex !important; 
-        gap: 15px !important; 
+        order: 2;
+        display: flex !important;
+        gap: 15px !important;
         justify-content: center !important;
-        width: 100% !important;
+        width: 100%;
+        padding: 10px 0;
     }
 
     .nav-links a {
-        font-size: 11px !important;
-        white-space: nowrap;
+        font-size: 13px !important;
     }
 
     .btn-quotation {
-        order: 3 !important;
-        margin-top: 5px !important;
+        order: 3;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 10px 20px !important;
     }
 
     .btn-whatsapp {
-        display: none;
+        display: inline-block !important; 
+        height: 16px !important;
+        width: auto !important;
     }
 
     .main {
@@ -613,6 +619,7 @@ select[name="inquiry_type"] {
 
     .main-content h1 {
         font-size: 1.8rem !important;
+        text-align: center;
     }
 
     .main-description {
@@ -629,7 +636,8 @@ select[name="inquiry_type"] {
         flex: 0 0 80% !important;
         min-width: 80% !important;
         max-width: 80% !important;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
     }
 
     .card h3,
@@ -639,43 +647,45 @@ select[name="inquiry_type"] {
 
     .cards-track {
         display: flex !important;
-        gap: 10px !important;
-        padding-left: 10% !important; 
-        padding-right: 10% !important;
-        transition: transform 0.5s ease-in-out !important;
+        gap: 15px !important;
+        padding: 0 10% !important;
     }
 
     .cards-container {
         padding: 0 !important;
         margin: 0 !important;
         width: 100% !important;
-        display: block !important;
         overflow: visible !important;
     }
 
+    .card-img {
+        aspect-ratio: 16 / 9;
+    }
+
     .slider-arrow {
-        top: auto !important;
-        bottom: -60px !important;
-        transform: none !important;
-        background: #647749 !important;
+        width: 40px !important;
+        height: 40px !important;
+        background-color: #647749 !important;
         color: white !important;
+        top: 40% !important;
     }
 
     .slider-arrow.prev {
-        left: 20% !important;
+        left: 5px !important;
     }
 
     .slider-arrow.next {
-        right: 20% !important;
+        right: 5px !important;
     }
 
     .services {
-        overflow: hidden !important;
-        padding: 40px 0 100px 0 !important;
+        padding: 40px 0 !important;
+        overflow: hidden;
     }
 
     .contact-container {
-        flex-direction: column !important;
+        flex-direction: column;
+        padding: 40px 5%;
     }
 
     .faq-section h1 {
