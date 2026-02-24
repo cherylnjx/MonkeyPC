@@ -111,48 +111,47 @@
         function updateSlider() {
             const isMobile = window.innerWidth <= 768;
             const gap = isMobile ? 15 : 30;
-            
             const cardWidth = cards[0].offsetWidth;
-            
+
             const moveAmount = currentIndex * (cardWidth + gap);
             
             track.style.transition = "transform 0.5s ease-in-out";
             track.style.transform = `translateX(-${moveAmount}px)`;
 
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
+            cards.forEach((card, index) => {
+                card.classList.toggle('active-mobile', index === currentIndex);
+                
+                if (dots[index]) {
+                    dots[index].classList.toggle('active', index === currentIndex);
+                }
             });
         }
 
         function moveNext() {
-            if (currentIndex >= cards.length - 1) {
-                currentIndex = 0;
-            } else {
-                currentIndex++;
-            }
+            currentIndex = (currentIndex + 1) % cards.length;
             updateSlider();
         }
 
         function movePrev() {
-            if (currentIndex <= 0) {
-                currentIndex = cards.length - 1;
-            } else {
-                currentIndex--;
-            }
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
             updateSlider();
         }
 
-        nextBtn.addEventListener('click', moveNext);
-        prevBtn.addEventListener('click', movePrev);
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            moveNext();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            movePrev();
+        });
 
         window.addEventListener('resize', updateSlider);
 
         updateSlider();
 
         let autoSlide = setInterval(moveNext, 5000);
-        const container = document.querySelector('.cards-container');
-        container.addEventListener('mouseenter', () => clearInterval(autoSlide));
-        container.addEventListener('mouseleave', () => autoSlide = setInterval(moveNext, 5000));
     </script>
 </body>
 </html>
