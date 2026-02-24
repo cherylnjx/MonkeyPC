@@ -558,11 +558,13 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
+        header {
         display: flex !important;
         flex-direction: column !important; 
         align-items: center !important;
-        padding: 20px 0 !important;
-        gap: 10px !important;
+        padding: 25px 0 !important;
+        gap: 12px !important;
+}
     }
 
     .logo-box {
@@ -586,7 +588,8 @@ select[name="inquiry_type"] {
     }
 
     .nav-links a {
-        font-size: 13px !important;
+        font-size: 18px !important;
+        letter-spacing: 0.5px;
     }
 
     .btn-quotation {
@@ -634,14 +637,16 @@ select[name="inquiry_type"] {
         flex: 0 0 70% !important;
         min-width: 70% !important;
         max-width: 70% !important;
-        opacity: 0.4;
+        opacity: 0.8 !important;
         transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .card h3,
-    .card p {
-        padding: 0 5px;
-    }
+    .card p,
+    .read-more {
+        padding: 0 10px !important;
+        text-align: left !important;
+}
 
     .cards-track {
         display: flex !important;
@@ -659,7 +664,8 @@ select[name="inquiry_type"] {
     }
 
     .card.active-mobile {
-        opacity: 1;
+        opacity: 1 !important;
+        transform: scale(1.02)
     }
 
     .slider-arrow {
