@@ -733,11 +733,21 @@ select[name="inquiry_type"] {
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr !important;
+       grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important;
+        width: 100% !important;
     }
 
     .gallery-item {
         width: 100% !important;
+        aspect-ratio: 1 / 1 !important; 
+        height: auto !important;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .main,
