@@ -102,25 +102,27 @@
         const prevBtn = document.getElementById('prevBtn');
         const dotsContainer = document.getElementById('dotsContainer');
         let cards = Array.from(track.children);
-        
+
         const cardCount = cards.length;
+        // cards loop
         cards.forEach(card => track.appendChild(card.cloneNode(true)));
         cards.reverse().forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
 
         let currentIndex = cardCount;
         const allCards = Array.from(track.children);
-        
+
+        // touch
         let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
-        let animationID = 0;
 
+        // dots for cards
         dotsContainer.innerHTML = '';
-        for(let i=0; i<cardCount; i++) {
+        for (let i = 0; i < cardCount; i++) {
             const dot = document.createElement('span');
             dot.classList.add('dot');
-            if(i === 0) dot.classList.add('active');
+            if (i === 0) dot.classList.add('active');
             dotsContainer.appendChild(dot);
         }
         const dots = document.querySelectorAll('.dot');
@@ -136,23 +138,29 @@
             const gap = isMobile ? 15 : 30;
 
             track.style.transition = transition ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-            
+
             const centerOffset = (containerWidth - cardWidth) / 2;
             const moveAmount = (currentIndex * (cardWidth + gap)) - centerOffset;
-            
+
             currentTranslate = -moveAmount;
             prevTranslate = currentTranslate;
-            track.style.transform = `translateX(-${moveAmount}px)`;
+            
+            setSliderPosition(currentTranslate);
 
+            // active/focused card
             const dotIndex = (currentIndex - cardCount + cardCount) % cardCount;
             dots.forEach((dot, i) => dot.classList.toggle('active', i === dotIndex));
             allCards.forEach((card, i) => card.classList.toggle('active-mobile', i === currentIndex));
         }
 
+        function setSliderPosition(translate) {
+            track.style.transform = `translateX(${translate}px)`;
+        }
+
+        // touch functions
         track.addEventListener('touchstart', touchStart);
         track.addEventListener('touchend', touchEnd);
         track.addEventListener('touchmove', touchMove);
-
         track.addEventListener('mousedown', touchStart);
         track.addEventListener('mouseup', touchEnd);
         track.addEventListener('mouseleave', touchEnd);
@@ -169,13 +177,14 @@
             if (!isDragging) return;
             const currentPosition = getPositionX(event);
             const diff = currentPosition - startPos;
-            track.style.transform = `translateX(${prevTranslate + diff}px)`;
+            setSliderPosition(prevTranslate + diff);
         }
 
         function touchEnd(event) {
             if (!isDragging) return;
             isDragging = false;
-            const endPos = getPositionX(event === 'touchend' ? event.changedTouches[0] : event);
+            
+            const endPos = event.type.includes('mouse') ? event.pageX : event.changedTouches[0].clientX;
             const movedBy = startPos - endPos;
 
             if (movedBy > 50) {
