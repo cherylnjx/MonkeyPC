@@ -138,11 +138,11 @@ header {
 }
 
 .cards-container {
-    overflow: hidden;
+    overflow: visible;
     position: relative;
-    padding: 20px 60px;
-    width: 100%;
-    max-width: 1400px;
+    padding: 20px 0;
+    width: 90%;
+    max-width: 1200px; 
     margin: 0 auto;
 }
 
@@ -150,6 +150,12 @@ header {
     display: flex;
     gap: 30px;
     transition: transform 0.5s ease-in-out;
+    padding: 0;
+}
+
+.cards-track-wrapper {
+    overflow: hidden;
+    width: 100%;
 }
 
 .card {
@@ -174,9 +180,6 @@ header {
 .card p {
     font-size: 1rem;
     color: #666;
-    /* overflow-wrap: anywhere; 
-    word-break: break-word;
-    hyphens: auto; */
     line-height: 1.5;
 }
 
@@ -221,12 +224,12 @@ header {
 }
 
 .slider-arrow.prev {
-    left: 10px;
+    left: -60px;
     right: auto;
 }
 
 .slider-arrow.next {
-    right: 10px;
+    right: -60px;
     left: auto;
 }
 
@@ -539,6 +542,19 @@ select[name="inquiry_type"] {
         width: 100%;
         height: auto;
         aspect-ratio: 440 / 260;
+    }
+}
+
+@media (max-width: 1300px) {
+    .cards-container {
+        width: 85%;
+    }
+    .slider-arrow.prev {
+        left: -45px;
+    }
+
+    .slider-arrow.next {
+        right: -45px;
     }
 }
 
