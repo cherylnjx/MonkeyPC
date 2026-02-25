@@ -594,7 +594,7 @@ select[name="inquiry_type"] {
 
     .btn-quotation {
         order: 3 !important; 
-        margin-top: 10px !important;
+        margin-top: 50px !important;
     }
 
     .btn-whatsapp {
@@ -630,16 +630,15 @@ select[name="inquiry_type"] {
     
     .services {
         padding: 40px 0 60px 0 !important;
-        overflow: hidden !important;
     }
 
     .card {
-        flex: 0 0 70% !important;
-        min-width: 70% !important;
-        max-width: 70% !important;
-        padding: 20px !important;
-        opacity: 0.6 !important;
-        transition: all 0.5s ease;
+        flex: 0 0 75% !important;
+        min-width: 75% !important;
+        max-width: 75% !important;
+        opacity: 0.5;
+        transform: scale(0.9);
+        transition: all 0.4s ease;
     }
 
     .card h3,
@@ -654,12 +653,15 @@ select[name="inquiry_type"] {
     .cards-track {
         display: flex !important;
         gap: 15px !important;
-        padding: 0 15% !important;
+        padding: 0 !important;
+        width: max-content;
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .cards-container {
         padding: 0 !important;
-        overflow: visible !important;
+        overflow: hidden !important;
+        width: 100%;
     }
 
     .card-img {
@@ -668,12 +670,12 @@ select[name="inquiry_type"] {
 
     .card.active-mobile {
         opacity: 1 !important;
-        transform: scale(1.05);
+        transform: scale(1);
     }
 
     .slider-arrow {
-        top: 30% !important;
-        z-index: 100;
+        top: 40% !important;
+        background: rgba(255, 255, 255, 0.8) !important;
     }
 
     .slider-arrow.prev {
