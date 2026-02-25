@@ -151,6 +151,12 @@ header {
     gap: 30px;
     transition: transform 0.5s ease-in-out;
     padding: 0;
+    cursor: grab;
+    user-select: none;
+}
+
+.cards-track:active {
+    cursor: grabbing;
 }
 
 .cards-track-wrapper {
@@ -189,6 +195,7 @@ header {
     aspect-ratio: 400 / 260; 
     object-fit: cover; 
     display: block;
+    pointer-events: none;
 }
 
 .card h3,
