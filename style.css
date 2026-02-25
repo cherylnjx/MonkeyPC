@@ -558,11 +558,8 @@ select[name="inquiry_type"] {
 /* overall fix - smaller screens (phone/tablets) */
 @media (max-width: 768px) {
     header {
-        display: flex !important;
-        flex-direction: column !important; 
-        align-items: center !important;
-        padding: 25px 0 !important;
-        gap: 15px !important;
+        padding: 15px 0 !important;
+        gap: 5px !important;
     }
 
     .logo-box {
@@ -570,7 +567,7 @@ select[name="inquiry_type"] {
     }
 
     .logo-box img {
-       height: 50px !important;
+       height: 40px !important
     }
 
     header nav { 
@@ -579,22 +576,16 @@ select[name="inquiry_type"] {
     }
 
     .nav-links {
-        display: flex !important;
-        justify-content: center !important;
-        gap: 25px !important;
-        padding: 10px 0 !important;
+        gap: 15px !important;
     }
 
     .nav-links a {
-        font-size: 18px !important;
-        font-weight: bold !important;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
+        font-size: 14px !important;
     }
 
     .btn-quotation {
-        order: 3 !important; 
-        margin-top: 50px !important;
+        margin-top: 10px !important;
+        padding: 8px 15px !important;
     }
 
     .btn-whatsapp {
@@ -614,7 +605,7 @@ select[name="inquiry_type"] {
     }
 
     .main-content h1 {
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important;
     }
 
     .main-description {
@@ -629,15 +620,16 @@ select[name="inquiry_type"] {
     }
     
     .services {
-        padding: 40px 0 60px 0 !important;
+        padding: 40px 0 !important;
+        width: 100% !important;
+        overflow: hidden;
     }
 
     .card {
-        flex: 0 0 75% !important;
+        flex: 0 0 75% !important; 
         min-width: 75% !important;
-        max-width: 75% !important;
-        opacity: 0.5;
-        transform: scale(0.9);
+        opacity: 0.4;
+        transform: scale(0.85);
         transition: all 0.4s ease;
     }
 
@@ -651,31 +643,34 @@ select[name="inquiry_type"] {
 }
 
     .cards-track {
-        display: flex !important;
         gap: 15px !important;
         padding: 0 !important;
-        width: max-content;
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        display: flex !important;
     }
 
     .cards-container {
         padding: 0 !important;
-        overflow: hidden !important;
-        width: 100%;
+        margin: 0 !important;
+        width: 100vw;
     }
 
     .card-img {
+        width: 100%;
         aspect-ratio: 16 / 9;
+        object-fit: cover;
     }
 
     .card.active-mobile {
         opacity: 1 !important;
-        transform: scale(1);
+        transform: scale(1)
     }
 
     .slider-arrow {
-        top: 40% !important;
-        background: rgba(255, 255, 255, 0.8) !important;
+        top: 35% !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: rgba(255,255,255,0.9) !important;
+        z-index: 20;
     }
 
     .slider-arrow.prev {
