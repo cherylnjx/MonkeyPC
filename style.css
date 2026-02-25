@@ -162,6 +162,7 @@ header {
 .cards-track-wrapper {
     overflow: hidden;
     width: 100%;
+    touch-action: pan-y;
 }
 
 .card {
