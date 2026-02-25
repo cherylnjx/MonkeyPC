@@ -46,12 +46,17 @@
                 <img src="image/arrow.png" alt="arrow symbol" class="btn-arrow"></a>
         </div>
      </section>
+
      <section class="services">
         <div class="cards-container">
 
-            <!-- left arrow button -->
+            <!-- left & right arrow button -->
             <div class="slider-arrow prev" id="prevBtn">
                 <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <div class="slider-arrow next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
             </div>
 
             <!-- cards -->
@@ -85,17 +90,7 @@
                 </div>
             </div>
 
-            <!-- right arrow button -->
-            <div class="slider-arrow next" id="nextBtn">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-        </div>
-
-        <div class="dots-container" id="dotsContainer">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+            <div class="dots-container" id="dotsContainer"></div>
         </div>
     </section>
 
@@ -103,47 +98,59 @@
         const track = document.getElementById('cardsTrack');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
+        const dotsContainer = document.getElementById('dotsContainer');
+        let cards = Array.from(track.children);
+        
+        const cardCount = cards.length;
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+        });
+        cards.reverse().forEach(card => {
+            const clone = card.cloneNode(true);
+            track.insertBefore(clone, track.firstChild);
+        });
+
+        let currentIndex = cardCount;
+        const allCards = Array.from(track.children);
+        
+        for(let i=0; i<cardCount; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if(i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        }
         const dots = document.querySelectorAll('.dot');
-        const cards = Array.from(track.children);
 
-        let currentIndex = 0;
-
-        function updateSlider() {
-            if (cards.length === 0) return;
-            
+        function updateSlider(transition = true) {
             const isMobile = window.innerWidth <= 768;
             const containerWidth = track.parentElement.offsetWidth;
-            const cardWidth = cards[0].offsetWidth;
+            const cardWidth = allCards[0].offsetWidth;
             const gap = isMobile ? 15 : 30;
 
-            if (currentIndex >= cards.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = cards.length - 1;
-
-            let moveAmount;
-
-            if (isMobile) {
-                const centerOffset = (containerWidth - cardWidth) / 2;
-                moveAmount = (currentIndex * (cardWidth + gap)) - centerOffset;
-            } else {
-                const maxScroll = (cards.length - 3) * (cardWidth + gap);
-                moveAmount = currentIndex * (cardWidth + gap);
-                
-                if (moveAmount > maxScroll && cards.length > 3) moveAmount = maxScroll;
-            }
-
+            track.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+            
+            const centerOffset = (containerWidth - cardWidth) / 2;
+            const moveAmount = (currentIndex * (cardWidth + gap)) - centerOffset;
+            
             track.style.transform = `translateX(-${moveAmount}px)`;
 
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-            
-            cards.forEach((card, index) => {
-                card.classList.toggle('active-mobile', index === currentIndex);
-            });
+            const dotIndex = (currentIndex - cardCount + cardCount) % cardCount;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === dotIndex));
 
-            prevBtn.style.display = 'flex';
-            nextBtn.style.display = 'flex';
+            allCards.forEach((card, i) => card.classList.toggle('active-mobile', i === currentIndex));
         }
+
+        track.addEventListener('transitionend', () => {
+            if (currentIndex >= cardCount * 2) {
+                currentIndex = cardCount;
+                updateSlider(false);
+            }
+            if (currentIndex < cardCount) {
+                currentIndex = cardCount * 2 - 1;
+                updateSlider(false);
+            }
+        });
 
         nextBtn.addEventListener('click', () => {
             currentIndex++;
@@ -155,9 +162,8 @@
             updateSlider();
         });
 
-        window.addEventListener('resize', updateSlider);
-        window.addEventListener('load', updateSlider);
-        updateSlider();
+        window.addEventListener('resize', () => updateSlider(false));
+        window.addEventListener('load', () => updateSlider(false));
     </script>
 </body>
 </html>
