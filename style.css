@@ -598,7 +598,7 @@ select[name="inquiry_type"] {
     }
 
     .nav-links a {
-        font-size: 14px !important;
+        font-size: 18px !important;
     }
 
     .btn-quotation {
@@ -624,11 +624,11 @@ select[name="inquiry_type"] {
 
     .main-content h1 {
         font-size: 2rem !important;
-        text-align: center;
+        text-align: left;
     }
 
     .main-description {
-        text-align: center !important;
+        text-align: left !important;
         padding: 0 !important;
     }
 
