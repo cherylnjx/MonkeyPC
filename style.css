@@ -29,7 +29,8 @@ header {
 /* logo */
 .logo-box img {
     height: 45px;
-    pointer-events: none;
+    display: block;
+    pointer-events: auto !important;
 }
 
 .logo-box {
@@ -39,7 +40,10 @@ header {
 
 .logo-box a {
     cursor: pointer !important;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
 }
 
 .logo-box a:hover {
@@ -761,9 +765,11 @@ select[name="inquiry_type"] {
     .gallery-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important; 
+        gap: 10px !important;
+        row-gap: 10px !important;
+        align-content: start;
         width: 100% !important;
-        padding: 10px 0 !important;
+        padding: 0 !important;
         margin: 0 auto !important;
     }
 
@@ -772,8 +778,7 @@ select[name="inquiry_type"] {
         aspect-ratio: 440 / 260 !important; 
         height: auto !important;
         margin: 0 !important; 
-        overflow: hidden !important;
-        border-radius: 3px !important;
+        display: block;
     }
 
     .gallery-item img {
