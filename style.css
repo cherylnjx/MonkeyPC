@@ -999,7 +999,7 @@ select[name="inquiry_type"] {
         margin-left: 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: left !important;
+        align-items: center !important;
         order: 2;
     }
 
