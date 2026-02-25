@@ -102,18 +102,13 @@
         let cards = Array.from(track.children);
         
         const cardCount = cards.length;
-        cards.forEach(card => {
-            const clone = card.cloneNode(true);
-            track.appendChild(clone);
-        });
-        cards.reverse().forEach(card => {
-            const clone = card.cloneNode(true);
-            track.insertBefore(clone, track.firstChild);
-        });
+        cards.forEach(card => track.appendChild(card.cloneNode(true)));
+        cards.reverse().forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
 
         let currentIndex = cardCount;
         const allCards = Array.from(track.children);
         
+        dotsContainer.innerHTML = '';
         for(let i=0; i<cardCount; i++) {
             const dot = document.createElement('span');
             dot.classList.add('dot');
@@ -128,7 +123,7 @@
             const cardWidth = allCards[0].offsetWidth;
             const gap = isMobile ? 15 : 30;
 
-            track.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+            track.style.transition = transition ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
             
             const centerOffset = (containerWidth - cardWidth) / 2;
             const moveAmount = (currentIndex * (cardWidth + gap)) - centerOffset;
@@ -137,7 +132,6 @@
 
             const dotIndex = (currentIndex - cardCount + cardCount) % cardCount;
             dots.forEach((dot, i) => dot.classList.toggle('active', i === dotIndex));
-
             allCards.forEach((card, i) => card.classList.toggle('active-mobile', i === currentIndex));
         }
 
@@ -152,14 +146,28 @@
             }
         });
 
+        let slideTimer = setInterval(autoMove, 4000);
+
+        function autoMove() {
+            currentIndex++;
+            updateSlider();
+        }
+
+        function resetTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(autoMove, 4000);
+        }
+
         nextBtn.addEventListener('click', () => {
             currentIndex++;
             updateSlider();
+            resetTimer();
         });
 
         prevBtn.addEventListener('click', () => {
             currentIndex--;
             updateSlider();
+            resetTimer();
         });
 
         window.addEventListener('resize', () => updateSlider(false));
