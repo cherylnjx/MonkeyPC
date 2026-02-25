@@ -24,6 +24,11 @@ header {
     align-items: center;
     padding: 15px 5%;
     color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
 }
 
 /* logo */
@@ -103,6 +108,12 @@ header {
     align-items: center;
     padding: 0 5%;
     color: white;
+}
+
+.main, 
+.gallery-section, 
+.contact-container {
+    margin-top: 80px;
 }
 
 .main-content {
@@ -600,6 +611,8 @@ select[name="inquiry_type"] {
         flex-direction: column !important;
         padding: 20px 0 !important;
         gap: 15px !important;
+        position: relative;
+        height: auto;
     }
 
     .logo-box {
@@ -785,6 +798,12 @@ select[name="inquiry_type"] {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .main, 
+    .gallery-section, 
+    .contact-container {
+        margin-top: 0;
     }
 
     .main,
