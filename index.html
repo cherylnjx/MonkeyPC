@@ -298,38 +298,45 @@
         window.addEventListener('load', () => updateSlider(false));
 
         // counter animation
-        const speed = 500;
+        const speed = 300;
 
-        const startCounters = () => {
-            const counters = document.querySelectorAll('.count-number');
+        const startCounters = (counter) => {
+            const target = +counter.getAttribute('data-target');
             
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    
-                    const inc = target / speed;
+            const updateCount = () => {
+                if (counter.dataset.isAnimating === "false") return;
 
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
         };
 
         const observerOptions = {
-            threshold: 0.5
+            threshold: 0.2
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                const counters = entry.target.querySelectorAll('.count-number');
+                
                 if (entry.isIntersecting) {
-                    startCounters();
-                    observer.unobserve(entry.target);
+                    counters.forEach(counter => {
+                        counter.dataset.isAnimating = "true";
+                        startCounters(counter);
+                    });
+                } else {
+                    counters.forEach(counter => {
+                        counter.dataset.isAnimating = "false";
+                        counter.innerText = "0";
+                    });
                 }
             });
         }, observerOptions);
