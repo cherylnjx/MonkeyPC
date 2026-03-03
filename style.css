@@ -1008,12 +1008,14 @@ select[name="inquiry_type"] {
         text-align: center;
     }
 
-    .footer-services h3::after, .footer-others h3::after {
+    .footer-services h3::after,
+    .footer-others h3::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
     }
 
-    .footer-services ul, .footer-others ul {
+    .footer-services ul,
+    .footer-others ul {
         text-align: center !important;
         padding: 0 !important;
     }
