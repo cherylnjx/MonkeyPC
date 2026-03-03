@@ -176,6 +176,13 @@
         };
 
         closeBtn.onclick = closeModal;
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+
         modal.onclick = (e) => { if (e.target === modal || e.target === wrapper) closeModal(); };
 
         function resetZoom() {
